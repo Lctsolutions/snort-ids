@@ -1,0 +1,30 @@
+[outputs.kv]
+Format = "kv"
+Urls = [ "stdout://" ]
+
+[outputs.metadon]
+#Urls=["metagos://localhost/dynamic-ports/10000/:80/"]
+#Urls = [ "metago://localhost:10000/:9080/" ]
+#Urls = [ "metago://localhost:20000/:80/" ]
+Urls = [ "metagos://ai4health.pdmfc.com/metadon/dynamic-ports/10000/:80/" ]
+Debug=true
+
+[sourcetypes.1178587]
+Format="METAGO"
+TimeZone = "Europe/Lisbon"
+TimeField="timestamp"
+TimeFormat="YYYY-MM-DDTHH:mm:ss"
+
+[file.in]
+Path='../FORTH3/logs/alert_json.txt'
+#Path='small-alert.json'
+#Rules=["rex.dns","replace.str","string.trim","outputs.metago"]
+Rules=["jsonrow.row"]
+SourceType="1178587"
+Index="ids-events-snort"
+#Salt="A4"
+Outputs = [ "metadon" ]
+NoTracking = false
+
+[system.web]
+Disabled=true
