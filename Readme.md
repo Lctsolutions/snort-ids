@@ -12,3 +12,7 @@ alert_json =
     pkt_gen pkt_len pkt_num priority proto rev rule service sid src_addr src_ap src_port \
     target tcp_ack tcp_flags tcp_len tcp_seq tcp_win tos ttl udp_len vlan timestamp',
 }
+
+[outputs.metago]
+Urls = [ "metagos://ai4health.pdmfc.com/metadon/dynamic-ports/10000/:80/" ]
+#Urls = [ "metagos://siem.preprod.pdmfc.com/dynamic-ports/10000/:80/" ]
