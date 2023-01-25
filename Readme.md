@@ -13,6 +13,29 @@ alert_json =
     target tcp_ack tcp_flags tcp_len tcp_seq tcp_win tos ttl udp_len vlan timestamp',
 }
 
+
+
+#[evt.security]
+#LogName= c:\log.txt
+#Index="bloodraven_win"
+#Rules=["outputs.metago"]
+
+## Metrics input
+# Collects system metrics from the local machine
+# CPU,DISK,NET,MEMORY,Connections and Process information
+[metrics.all]
+Metrics=[
+    "cpu", # Cpu time consumed
+    "cpuinfo", # Cpu version, and spec
+    "virtualmem", # Memory used/free
+    "disk", # Disk IO counters
+    "loadavg", # CPU load average 1,5,15m
+    "net", # Net IO Counters by interface
+    "connections",# Connection,src,dst,ports,process pid, type, status
+    "process"]
+Index= "bloodraven_metrics"
+Rules=["outputs.metago"]
+
 [outputs.metago]
 Urls = [ "metagos://ai4health.pdmfc.com/metadon/dynamic-ports/10000/:80/" ]
 #Urls = [ "metagos://siem.preprod.pdmfc.com/dynamic-ports/10000/:80/" ]
